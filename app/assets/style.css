@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap");
+
+:root {
+  --font-base: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+  --font-headings: "Chakra Petch", "Space Grotesk", sans-serif;
+
+  --bg: #f6f8ff;
+  --bg-soft: #eef2ff;
+  --surface: #ffffff;
+  --surface-2: #edf2ff;
+  --text: #171f37;
+  --text-muted: #485379;
+  --brand: #00a786;
+  --secondary: #db78ff;
+  --brand-strong: #00866b;
+  --brand-contrast: #f2fffb;
+  --bg-glow-primary: color-mix(in oklab, var(--brand) 22%, transparent);
+  --bg-glow-secondary: color-mix(in oklab, var(--secondary) 18%, transparent);
+  --line: #d3dcf7;
+  --code-bg: #dfe8ff;
+  --code-inline-bg: #e9efff;
+  --code-border: #c1cef6;
+  --shadow: 0 16px 40px rgb(20 42 99 / 0.1);
+}
+
+.dark {
+  --bg: #090b16;
+  --bg-soft: #10142a;
+  --surface: #121934;
+  --surface-2: #0f1429;
+  --text: #edf1ff;
+  --text-muted: #b4bfde;
+  --brand: #44ffd1;
+  --secondary: #db78ff;
+  --brand-strong: #2de7c5;
+  --brand-contrast: #031116;
+  --line: #2f3d69;
+  --code-bg: #0a1024;
+  --code-inline-bg: #141d3d;
+  --code-border: #33457a;
+  --shadow: 0 16px 44px rgb(0 0 0 / 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__nuxt {
+  min-height: 100%;
+}
+
+#__nuxt {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+html,
+body {
+  background-color: var(--bg);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 12%, var(--bg-glow-primary), transparent 28%),
+    radial-gradient(circle at 90% 18%, var(--bg-glow-secondary), transparent 34%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-soft) 44%, var(--bg) 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  font-family: var(--font-headings);
+  letter-spacing: 0.015em;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+:not(pre) > code {
+  background: var(--code-inline-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 0.55rem;
+  padding: 0.16rem 0.44rem;
+}
+
+.stylized-panel {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--surface) 88%, transparent);
+  box-shadow: var(--shadow);
+}

@@ -1,0 +1,43 @@
+{
+  "siteTitle": "gusemu.org",
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "guides": "Guides",
+    "about": "About"
+  },
+  "home": {
+    "kicker": "gusemu.org",
+    "title": "Emulation, made easy.",
+    "description": "Concrete resources on emulators, ROMs, and community projects.",
+    "primaryCta": "Check guides",
+    "secondaryCta": "Search for ROMs"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search for ROMs, games,..."
+  },
+  "about": {
+    "title": "About",
+    "body": "gusemu.org is a set of tools and resources focused on emulation fundamentals, community resources, and technical workflows.",
+    "body-2": "The project is guided by three core principles:",
+    "point-safe": "Prioritize safe, reliable setups that minimize user risks.",
+    "point-knowledge": "Turn complex steps into clear, repeatable guides that empower users to build and maintain their own emulation setups.",
+    "point-community": "Support maintainers and highlight community-driven projects."
+  },
+  "guides": {
+    "title": "Guides",
+    "sidebarTitle": "All Pages",
+    "overview": "Overview"
+  },
+  "mode": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "locale": {
+    "english": "English",
+    "french": "French"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "gusemu.org",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "typecheck": "tsc --noEmit",
+    "check": "vp check",
+    "check:fix": "vp check --fix"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.99",
+    "@nuxt/content": "^3.12.0",
+    "@nuxt/icon": "^2.2.1",
+    "@nuxt/image": "^2.0.0",
+    "@nuxt/scripts": "^0.13.2",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@nuxtjs/device": "^4.0.0",
+    "@nuxtjs/i18n": "^10.2.4",
+    "better-sqlite3": "^12.8.0",
+    "nuxt": "^4.4.2",
+    "vite-plus": "latest"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    },
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
+  }
+}
