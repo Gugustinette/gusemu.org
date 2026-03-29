@@ -41,7 +41,7 @@ type HeaderLink = {
 
 const links = computed<HeaderLink[]>(() => [
   { label: t("nav.home"), to: localePath("/"), icon: "lucide:home" },
-  { label: t("nav.search"), to: localePath("/search"), icon: "lucide:search" },
+  // { label: t("nav.search"), to: localePath("/search"), icon: "lucide:search" },
   {
     label: t("nav.guides"),
     to: localePath("/guides"),

@@ -1,7 +1,7 @@
 <template>
   <li class="sidebar-item">
     <NuxtLink
-      v-if="item.path"
+      v-if="item.path && !hasChildren"
       :to="localizedPath"
       class="sidebar-link"
       :class="{ 'is-active': isActive }"
@@ -9,7 +9,7 @@
       {{ label }}
     </NuxtLink>
 
-    <span v-else class="sidebar-link">{{ label }}</span>
+    <span v-else class="sidebar-link sidebar-label">{{ label }}</span>
 
     <ul v-if="childItems.length > 0" class="sidebar-sublist">
       <GuidesSidebarItem
@@ -39,6 +39,8 @@ const props = defineProps<{
 
 const childItems = computed(() => props.item.children || []);
 
+const hasChildren = computed(() => childItems.value.length > 0);
+
 const label = computed(() => buildNavigationLabel(props.item));
 
 const isActive = computed(() => props.currentPath === props.item.path);
@@ -59,10 +61,20 @@ const localizedPath = computed(() => toLocalizedPath(props.item.path, props.loca
   color: var(--text-muted);
 }
 
+.sidebar-label {
+  cursor: default;
+}
+
 .sidebar-link:hover,
 .sidebar-link.is-active {
   color: var(--text);
   background: color-mix(in oklab, var(--brand) 14%, transparent);
+}
+
+.sidebar-label:hover,
+.sidebar-label.is-active {
+  color: var(--text-muted);
+  background: transparent;
 }
 
 .sidebar-sublist {

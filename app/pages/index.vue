@@ -7,9 +7,11 @@
       <NuxtLink :to="localePath('/guides')">
         <Button :label="$t('home.primaryCta')" icon="lucide:book-open-check" />
       </NuxtLink>
+      <!--
       <NuxtLink :to="localePath('/search')">
         <Button :label="$t('home.secondaryCta')" icon="lucide:search" type="secondary" />
       </NuxtLink>
+      -->
     </div>
   </section>
 </template>

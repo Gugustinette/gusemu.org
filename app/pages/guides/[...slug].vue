@@ -2,7 +2,7 @@
   <main class="guides-layout">
     <aside class="guides-sidebar stylized-panel">
       <h2>{{ t("guides.sidebarTitle") }}</h2>
-      <ul class="sidebar-list">
+      <ul>
         <GuidesSidebarItem
           v-for="item in sidebarItems"
           :key="item.path || item.title"
@@ -197,10 +197,6 @@ const sidebarItems = computed(() =>
   list-style: none;
 }
 
-.sidebar-list {
-  margin-top: 0.6rem;
-}
-
 .guides-content {
   min-height: 60vh;
   padding: 1.4rem;
@@ -210,22 +206,17 @@ const sidebarItems = computed(() =>
   scroll-margin-top: 7rem;
 }
 
-.guides-content p,
-.guides-content li {
+.guides-content :is(p),
+.guides-content :is(li) {
   color: var(--text-muted);
-  line-height: 1.64;
 }
 
-.guides-content a {
+.guides-content :is(li) {
+  margin-bottom: 1rem;
+}
+
+.guides-content :deep(a) {
   color: var(--brand);
-}
-
-.guides-content pre {
-  overflow: auto;
-  border-radius: 16px;
-  border: 1px solid var(--code-border);
-  background: var(--code-bg);
-  padding: 1rem;
 }
 
 @media (max-width: 1050px) {
