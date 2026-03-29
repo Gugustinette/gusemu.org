@@ -132,6 +132,9 @@ export interface Emulator {
 }
 
 export const emulators: Emulator[] = [
+  /**
+   * Multi-platform
+   */
   {
     name: "RetroArch",
     website: "https://www.retroarch.com/",
@@ -167,10 +170,29 @@ export const emulators: Emulator[] = [
     libretroSupport: true,
     retroAchievementsSupport: true,
   },
-  /**
-   * Nintendo
-   */
-  // GameBoy / GameBoy Color / GameBoy Advance
+  {
+    name: "Mesen",
+    website: "https://www.mesen.ca/",
+    repository: "https://github.com/SourMesen/Mesen2/",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      nes: true,
+      snes: true,
+      gameBoy: true,
+      gameBoyColor: true,
+      gameBoyAdvance: true,
+      masterSystem: true,
+      gameGear: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
   {
     name: "SkyEmu",
     website: "https://github.com/skylersaleh/SkyEmu",
@@ -191,7 +213,6 @@ export const emulators: Emulator[] = [
     libretroSupport: true,
     retroAchievementsSupport: true,
   },
-  // Gamecube / Wii
   {
     name: "Dolphin",
     website: "https://dolphin-emu.org/",
@@ -210,9 +231,336 @@ export const emulators: Emulator[] = [
     libretroSupport: false,
     retroAchievementsSupport: true,
   },
+  {
+    name: "Gearsystem",
+    website: "https://github.com/drhelius/Gearsystem",
+    repository: "https://github.com/drhelius/Gearsystem",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      sg1000: true,
+      masterSystem: true,
+      gameGear: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  /**
+   * Nintendo
+   */
+  // NES
+  {
+    name: "FCEUX",
+    website: "https://fceux.com/",
+    repository: "https://github.com/TASEmulators/fceux",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      nes: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // SNES
+  {
+    name: "snes9x",
+    website: "https://github.com/snes9xgit/snes9x",
+    repository: "https://github.com/snes9xgit/snes9x",
+    platforms: {
+      windows: EmulatorSupportLevel.Recommended,
+      macos: EmulatorSupportLevel.Recommended,
+      linux: EmulatorSupportLevel.Recommended,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      snes: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "bsnes",
+    website: "https://github.com/bsnes-emu/bsnes",
+    repository: "https://github.com/bsnes-emu/bsnes",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      snes: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  // Game Boy / Game Boy Color
+  {
+    name: "Gearboy",
+    website: "https://github.com/drhelius/Gearboy",
+    repository: "https://github.com/drhelius/Gearboy",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      gameBoy: true,
+      gameBoyColor: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "SameBoy",
+    website: "https://sameboy.github.io/",
+    repository: "https://github.com/LIJI32/SameBoy",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Stable,
+    },
+    emulating: {
+      gameBoy: true,
+      gameBoyColor: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  // Game Boy / Game Boy Color / Game Boy Advance
+  {
+    name: "mGBA",
+    website: "https://mgba.io/",
+    repository: "https://github.com/mgba-emu/mgba",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      gameBoy: true,
+      gameBoyColor: true,
+      gameBoyAdvance: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "VBA-M",
+    website: "https://www.visualboyadvance-m.org/",
+    repository: "https://github.com/visualboyadvance-m/visualboyadvance-m",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Unsupported,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      gameBoy: true,
+      gameBoyColor: true,
+      gameBoyAdvance: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  // Nintendo 64
+  {
+    name: "Mupen64Plus",
+    website: "https://mupen64plus.org/",
+    repository: "https://github.com/mupen64plus/mupen64plus-core",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      n64: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  // DS
+  {
+    name: "melonDS",
+    website: "https://melonds.kuribo64.net/",
+    repository: "https://github.com/melonDS-emu/melonDS",
+    platforms: {
+      windows: EmulatorSupportLevel.Recommended,
+      macos: EmulatorSupportLevel.Recommended,
+      linux: EmulatorSupportLevel.Recommended,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      ds: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "melonDS-android",
+    website: "https://github.com/SapphireRhodonite/melonDS-android",
+    repository: "https://github.com/SapphireRhodonite/melonDS-android",
+    platforms: {
+      windows: EmulatorSupportLevel.Unsupported,
+      macos: EmulatorSupportLevel.Unsupported,
+      linux: EmulatorSupportLevel.Unsupported,
+      android: EmulatorSupportLevel.Recommended,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      ds: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: true,
+  },
+  {
+    name: "DeSmuME",
+    website: "https://desmume.org/",
+    repository: "https://github.com/TASEmulators/desmume",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Unsupported,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      ds: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // 3DS
+  {
+    name: "Azahar",
+    website: "https://azahar-emu.org/",
+    repository: "https://github.com/azahar-emu/azahar",
+    platforms: {
+      windows: EmulatorSupportLevel.Recommended,
+      macos: EmulatorSupportLevel.Recommended,
+      linux: EmulatorSupportLevel.Recommended,
+      android: EmulatorSupportLevel.Recommended,
+      ios: EmulatorSupportLevel.Recommended,
+    },
+    emulating: {
+      "3ds": true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "AzaharPlus",
+    website: "https://github.com/AzaharPlus/AzaharPlus",
+    repository: "https://github.com/AzaharPlus/AzaharPlus",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Unsupported,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Stable,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      "3ds": true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // Wii U
+  {
+    name: "Cemu",
+    website: "https://cemu.info/",
+    repository: "https://github.com/cemu-project/Cemu",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      wiiu: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  {
+    name: "Cemu (Android)",
+    website: "https://github.com/SapphireRhodonite/Cemu",
+    repository: "https://github.com/SapphireRhodonite/Cemu",
+    platforms: {
+      windows: EmulatorSupportLevel.Unsupported,
+      macos: EmulatorSupportLevel.Unsupported,
+      linux: EmulatorSupportLevel.Unsupported,
+      android: EmulatorSupportLevel.Unstable,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      wiiu: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // Switch
+  {
+    name: "Eden",
+    website: "https://eden-emu.dev/",
+    repository: "https://git.eden-emu.dev/eden-emu/eden",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Stable,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      switch: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
   /**
    * Sega
    */
+  // Mega Drive
+  {
+    name: "ClownMDEmu",
+    website: "https://github.com/Clownacy/clownmdemu-frontend",
+    repository: "https://github.com/Clownacy/clownmdemu-frontend",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      megaDrive: true,
+    },
+    libretroSupport: true,
+    retroAchievementsSupport: false,
+  },
   // Dreamcast
   {
     name: "Flycast",
@@ -278,7 +626,7 @@ export const emulators: Emulator[] = [
       windows: EmulatorSupportLevel.Unsupported,
       macos: EmulatorSupportLevel.Unsupported,
       linux: EmulatorSupportLevel.Unsupported,
-      android: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Recommended,
       ios: EmulatorSupportLevel.Unsupported,
     },
     emulating: {
@@ -305,22 +653,114 @@ export const emulators: Emulator[] = [
     libretroSupport: false,
     retroAchievementsSupport: false,
   },
+  {
+    name: "aps3e",
+    website: "https://github.com/aenu1/aps3e",
+    repository: "https://github.com/aenu1/aps3e",
+    platforms: {
+      windows: EmulatorSupportLevel.Unsupported,
+      macos: EmulatorSupportLevel.Unsupported,
+      linux: EmulatorSupportLevel.Unsupported,
+      android: EmulatorSupportLevel.Unstable,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      ps3: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // PS4
+  {
+    name: "shadPS4",
+    website: "https://github.com/shadps4-emu/shadps4",
+    repository: "https://github.com/shadps4-emu/shadps4",
+    platforms: {
+      windows: EmulatorSupportLevel.Unstable,
+      macos: EmulatorSupportLevel.Unstable,
+      linux: EmulatorSupportLevel.Unstable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      ps4: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
   // PSP
   {
     name: "PPSSPP",
     website: "https://www.ppsspp.org/",
     repository: "https://github.com/hrydgard/ppsspp",
     platforms: {
-      windows: EmulatorSupportLevel.Recommended,
-      macos: EmulatorSupportLevel.Recommended,
-      linux: EmulatorSupportLevel.Recommended,
-      android: EmulatorSupportLevel.Recommended,
-      ios: EmulatorSupportLevel.Recommended,
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Stable,
+      ios: EmulatorSupportLevel.Stable,
     },
     emulating: {
       psp: true,
     },
     libretroSupport: true,
     retroAchievementsSupport: true,
+  },
+  // PS Vita
+  {
+    name: "Vita3K",
+    website: "https://vita3k.org/",
+    repository: "https://github.com/Vita3K/Vita3K",
+    platforms: {
+      windows: EmulatorSupportLevel.Unstable,
+      macos: EmulatorSupportLevel.Unstable,
+      linux: EmulatorSupportLevel.Unstable,
+      android: EmulatorSupportLevel.Unstable,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      psvita: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  /**
+   * Xbox
+   */
+  // Xbox
+  {
+    name: "xemu",
+    website: "https://xemu.app/docs/download/",
+    repository: "https://github.com/xemu-project/xemu",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      xbox: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
+  // Xbox 360
+  {
+    name: "Xenia",
+    website: "https://xenia.jp/",
+    repository: "https://github.com/xenia-project/xenia",
+    platforms: {
+      windows: EmulatorSupportLevel.Unstable,
+      macos: EmulatorSupportLevel.Unsupported,
+      linux: EmulatorSupportLevel.Unstable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      xbox360: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
   },
 ];

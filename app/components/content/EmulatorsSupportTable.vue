@@ -165,7 +165,7 @@ function supportLabel(level: EmulatorSupportLevel): string {
 }
 
 .support-recommended {
-  color: #2ca261;
+  color: var(--brand);
 }
 
 .support-stable {
