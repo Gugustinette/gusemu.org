@@ -80,7 +80,6 @@ const isLinkActive = (link: HeaderLink): boolean => {
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-headings);
-  font-size: 1.06rem;
 }
 
 .brand-mark .icon {

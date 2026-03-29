@@ -40,7 +40,6 @@ function getLocaleHref(code: string) {
 
 .locale-btn {
   padding: 0.35rem 0.65rem;
-  font-size: 0.82rem;
   color: var(--text-muted);
   background: var(--surface);
 }

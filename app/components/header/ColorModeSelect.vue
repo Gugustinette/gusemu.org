@@ -35,7 +35,6 @@ const colorMode = useColorMode();
   background: transparent;
   color: var(--text);
   font-family: var(--font-base);
-  font-size: 0.84rem;
   outline: none;
   cursor: pointer;
 }
