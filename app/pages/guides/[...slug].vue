@@ -15,11 +15,19 @@
 
     <article class="guides-content stylized-panel">
       <ContentRenderer v-if="page" :value="page" />
+
+      <GuidesBottomNavigation
+        :items="sidebarItems"
+        :current-path="normalizedPath"
+        :locale-code="locale"
+      />
     </article>
   </main>
 </template>
 
 <script setup lang="ts">
+import GuidesBottomNavigation from "~/components/guides/GuidesBottomNavigation.vue";
+import GuidesSidebarItem from "~/components/guides/GuidesSidebarItem.vue";
 import { normalizeContentPath, type NavigationItem } from "~/utils/guides";
 
 definePageMeta({

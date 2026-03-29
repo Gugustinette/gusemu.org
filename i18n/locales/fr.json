@@ -28,7 +28,9 @@
   "guides": {
     "title": "Guides",
     "sidebarTitle": "Toutes les pages",
-    "overview": "Vue d'ensemble"
+    "overview": "Vue d'ensemble",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante"
   },
   "mode": {
     "label": "Thème",
