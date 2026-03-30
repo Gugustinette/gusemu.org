@@ -36,6 +36,17 @@
       "advanced": "Advanced"
     }
   },
+  "emulators": {
+    "table": {
+      "emulator": "Emulator"
+    },
+    "support": {
+      "recommended": "Recommended",
+      "stable": "Stable",
+      "unstable": "Unstable",
+      "unsupported": "Unsupported"
+    }
+  },
   "mode": {
     "label": "Theme",
     "system": "System",

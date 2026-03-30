@@ -5,19 +5,19 @@
         <span
           class="support-icon"
           :class="`support-${item.level}`"
-          :title="item.label"
-          :aria-label="item.label"
+          :title="supportLabel(item.level)"
+          :aria-label="supportLabel(item.level)"
         >
           <Icon :name="supportIcon(item.level)" />
         </span>
-        <span>{{ item.label }}</span>
+        <span>{{ supportLabel(item.level) }}</span>
       </div>
     </div>
 
     <table class="emu-table">
       <thead>
         <tr>
-          <th scope="col">Emulator</th>
+          <th scope="col">{{ t("emulators.table.emulator") }}</th>
           <th v-for="platform in platforms" :key="platform.key" scope="col">
             {{ platform.label }}
           </th>
@@ -83,6 +83,8 @@ import {
   emulators,
 } from "~/data/emulators";
 
+const { t } = useI18n();
+
 const platforms: Array<{
   key: "windows" | "macos" | "linux" | "android" | "ios";
   label: string;
@@ -96,12 +98,11 @@ const platforms: Array<{
 
 const supportLegend: Array<{
   level: EmulatorSupportLevel;
-  label: string;
 }> = [
-  { level: EmulatorSupportLevel.Recommended, label: "Recommended" },
-  { level: EmulatorSupportLevel.Stable, label: "Stable" },
-  { level: EmulatorSupportLevel.Unstable, label: "Unstable" },
-  { level: EmulatorSupportLevel.Unsupported, label: "Unsupported" },
+  { level: EmulatorSupportLevel.Recommended },
+  { level: EmulatorSupportLevel.Stable },
+  { level: EmulatorSupportLevel.Unstable },
+  { level: EmulatorSupportLevel.Unsupported },
 ];
 
 const groupedRows = computed(() =>
@@ -129,14 +130,14 @@ function supportIcon(level: EmulatorSupportLevel): string {
 function supportLabel(level: EmulatorSupportLevel): string {
   switch (level) {
     case EmulatorSupportLevel.Recommended:
-      return "Recommended";
+      return t("emulators.support.recommended");
     case EmulatorSupportLevel.Stable:
-      return "Stable";
+      return t("emulators.support.stable");
     case EmulatorSupportLevel.Unstable:
-      return "Unstable";
+      return t("emulators.support.unstable");
     case EmulatorSupportLevel.Unsupported:
     default:
-      return "Unsupported";
+      return t("emulators.support.unsupported");
   }
 }
 </script>
