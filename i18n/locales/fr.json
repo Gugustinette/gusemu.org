@@ -33,7 +33,8 @@
     "nextPage": "Page suivante",
     "sections": {
       "fundamentals": "Fondamentaux",
-      "advanced": "Avancé"
+      "advanced": "Avancé",
+      "resources": "Ressources"
     }
   },
   "emulators": {

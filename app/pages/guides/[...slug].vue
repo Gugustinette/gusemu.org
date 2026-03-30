@@ -271,6 +271,10 @@ const sidebarItems = computed(() =>
   scroll-margin-top: 7rem;
 }
 
+.guides-content :deep([id]) {
+  scroll-margin-top: 7rem;
+}
+
 .guides-content :deep(p),
 .guides-content :deep(ul),
 .guides-content :deep(ol),
