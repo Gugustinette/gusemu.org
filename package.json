@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "dev:host": "nuxt dev --host",
-    "build": "nuxt build",
+    "build": "nuxt generate",
     "typecheck": "tsc --noEmit",
     "check": "vp check",
     "check:fix": "vp check --fix"
