@@ -1,5 +1,19 @@
 <template>
   <div class="emu-table-wrap">
+    <div class="support-legend" aria-label="Support level legend">
+      <div v-for="item in supportLegend" :key="item.level" class="support-legend-item">
+        <span
+          class="support-icon"
+          :class="`support-${item.level}`"
+          :title="item.label"
+          :aria-label="item.label"
+        >
+          <Icon :name="supportIcon(item.level)" />
+        </span>
+        <span>{{ item.label }}</span>
+      </div>
+    </div>
+
     <table class="emu-table">
       <thead>
         <tr>
@@ -20,9 +34,26 @@
 
           <tr v-for="emulator in group.emulators" :key="`${group.consoleKey}-${emulator.name}`">
             <th scope="row" class="emulator-name-cell">
-              <a :href="emulator.website" target="_blank" rel="noopener noreferrer">
-                {{ emulator.name }}
-              </a>
+              <span class="emulator-name-wrap">
+                <a
+                  class="emulator-website-link"
+                  :href="emulator.website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ emulator.name }}
+                </a>
+                <a
+                  class="emulator-repository-link"
+                  :href="emulator.repository"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open repository"
+                  aria-label="Open repository"
+                >
+                  <Icon name="mdi:git" />
+                </a>
+              </span>
             </th>
             <td
               v-for="platform in platforms"
@@ -61,6 +92,16 @@ const platforms: Array<{
   { key: "linux", label: "Linux" },
   { key: "android", label: "Android" },
   { key: "ios", label: "iOS" },
+];
+
+const supportLegend: Array<{
+  level: EmulatorSupportLevel;
+  label: string;
+}> = [
+  { level: EmulatorSupportLevel.Recommended, label: "Recommended" },
+  { level: EmulatorSupportLevel.Stable, label: "Stable" },
+  { level: EmulatorSupportLevel.Unstable, label: "Unstable" },
+  { level: EmulatorSupportLevel.Unsupported, label: "Unsupported" },
 ];
 
 const groupedRows = computed(() =>
@@ -109,6 +150,29 @@ function supportLabel(level: EmulatorSupportLevel): string {
   border-radius: 14px;
 }
 
+.support-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface-2) 72%, transparent);
+  align-items: center;
+}
+
+.support-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  color: var(--text-muted);
+}
+
 .emu-table {
   width: 100%;
   border-collapse: collapse;
@@ -140,6 +204,12 @@ function supportLabel(level: EmulatorSupportLevel): string {
   white-space: nowrap;
 }
 
+.emulator-name-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .console-row {
   background: color-mix(in oklab, var(--surface-2) 78%, transparent);
 }
@@ -152,11 +222,23 @@ function supportLabel(level: EmulatorSupportLevel): string {
   color: var(--text-muted);
 }
 
-.emulator-name-cell a {
+.emulator-website-link {
   color: var(--brand);
   text-decoration: underline;
   text-decoration-color: color-mix(in oklab, var(--brand) 60%, transparent);
   text-underline-offset: 0.14rem;
+}
+
+.emulator-repository-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.emulator-repository-link:hover {
+  color: var(--brand);
 }
 
 .support-icon {

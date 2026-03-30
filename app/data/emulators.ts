@@ -80,8 +80,8 @@ export const emulatorConsoleOrder: EmulatorConsoleKey[] = [
 
 export const emulatorConsoleLabels: Record<EmulatorConsoleKey, string> = {
   // Nintendo
-  nes: "NES",
-  snes: "SNES",
+  nes: "NES / Famicom",
+  snes: "SNES / Super Famicom",
   gameBoy: "Game Boy",
   gameBoyColor: "Game Boy Color",
   gameBoyAdvance: "Game Boy Advance",
@@ -95,7 +95,7 @@ export const emulatorConsoleLabels: Record<EmulatorConsoleKey, string> = {
   // Sega
   sg1000: "SG-1000",
   masterSystem: "Master System",
-  megaDrive: "Mega Drive",
+  megaDrive: "Mega Drive / Genesis",
   gameGear: "Game Gear",
   megaCd: "Mega-CD",
   saturn: "Saturn",

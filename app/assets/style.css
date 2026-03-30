@@ -77,11 +77,14 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  font-family: var(--font-headings);
+}
+
 h1,
 h2,
 h3 {
   margin-top: 0;
-  font-family: var(--font-headings);
   letter-spacing: 0.015em;
 }
 

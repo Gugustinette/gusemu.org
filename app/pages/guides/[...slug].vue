@@ -207,11 +207,43 @@ const sidebarItems = computed(() =>
 
 .guides-content {
   min-height: 60vh;
-  padding: 1.4rem;
+  padding: 1.75rem;
+  line-height: 1.7;
+}
+
+.guides-content :deep(h1) {
+  margin: 0 0 1.25rem;
+  line-height: 1.25;
+}
+
+.guides-content :deep(h2) {
+  margin: 2.5rem 0 1rem;
+  line-height: 1.3;
+}
+
+.guides-content :deep(h3) {
+  margin: 2rem 0 0.8rem;
+  line-height: 1.35;
 }
 
 .guides-content :is(h1, h2, h3) {
   scroll-margin-top: 7rem;
+}
+
+.guides-content :deep(p),
+.guides-content :deep(ul),
+.guides-content :deep(ol),
+.guides-content :deep(pre),
+.guides-content :deep(blockquote) {
+  margin: 0;
+}
+
+.guides-content :deep(* + p),
+.guides-content :deep(* + ul),
+.guides-content :deep(* + ol),
+.guides-content :deep(* + pre),
+.guides-content :deep(* + blockquote) {
+  margin-top: 1rem;
 }
 
 .guides-content :is(p),
@@ -219,12 +251,42 @@ const sidebarItems = computed(() =>
   color: var(--text-muted);
 }
 
-.guides-content :is(li) {
-  margin-bottom: 1rem;
+.guides-content :deep(ul),
+.guides-content :deep(ol) {
+  padding-left: 1.35rem;
 }
 
-.guides-content :deep(a) {
+.guides-content :is(li) {
+  margin-bottom: 0.65rem;
+}
+
+.guides-content :deep(li > ul),
+.guides-content :deep(li > ol) {
+  margin-top: 0.65rem;
+}
+
+.guides-content :deep(p a),
+.guides-content :deep(li a),
+.guides-content > :deep(a) {
   color: var(--brand);
+}
+
+.guides-content :deep(h1 a),
+.guides-content :deep(h2 a),
+.guides-content :deep(h3 a),
+.guides-content :deep(h1 a:hover),
+.guides-content :deep(h2 a:hover),
+.guides-content :deep(h3 a:hover),
+.guides-content :deep(h1 a:visited),
+.guides-content :deep(h2 a:visited),
+.guides-content :deep(h3 a:visited),
+.guides-content :deep(h1 a:active),
+.guides-content :deep(h2 a:active),
+.guides-content :deep(h3 a:active),
+.guides-content :deep(h1 a:focus-visible),
+.guides-content :deep(h2 a:focus-visible),
+.guides-content :deep(h3 a:focus-visible) {
+  color: inherit;
 }
 
 @media (max-width: 1050px) {
@@ -234,6 +296,10 @@ const sidebarItems = computed(() =>
 
   .guides-sidebar {
     position: static;
+  }
+
+  .guides-content {
+    padding: 1.2rem;
   }
 }
 </style>
