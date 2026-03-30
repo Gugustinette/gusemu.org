@@ -1,6 +1,6 @@
-# À propos de gusemu.org
+# À propos de gusemu
 
-**gusemu.org** est un ensemble d'outils et de ressources axés sur les fondamentaux de l'émulation, les ressources communautaires et les workflows techniques.
+**gusemu** est un ensemble d'outils et de ressources axés sur les fondamentaux de l'émulation, les ressources communautaires et les workflows techniques.
 
 Le projet est guidé par trois principes fondamentaux :
 

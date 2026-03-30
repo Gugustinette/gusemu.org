@@ -71,7 +71,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "gusemu.org",
+      title: "gusemu",
       meta: [{ name: "description", content: "Guides and tools for emulation, ROMs and more" }],
     },
   },

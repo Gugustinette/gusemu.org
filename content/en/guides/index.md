@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the gusemu.org documentation!
+Welcome to the gusemu documentation!
 
 This documentation is designed to help you get started with emulation, whether you're a beginner taking your first steps, or an experienced user looking to deepen your understanding.
 

@@ -1,5 +1,5 @@
 {
-  "siteTitle": "gusemu.org",
+  "siteTitle": "gusemu",
   "nav": {
     "home": "Home",
     "search": "Search",
@@ -7,7 +7,7 @@
     "about": "About"
   },
   "home": {
-    "kicker": "gusemu.org",
+    "kicker": "gusemu",
     "title": "Emulation, made easy.",
     "description": "Concrete resources on emulators, ROMs, and community projects.",
     "primaryCta": "Check guides",

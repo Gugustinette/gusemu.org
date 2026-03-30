@@ -1,6 +1,6 @@
-# About gusemu.org
+# About gusemu
 
-**gusemu.org** is a set of tools and resources focused on emulation fundamentals, community resources, and technical workflows.
+**gusemu** is a set of tools and resources focused on emulation fundamentals, community resources, and technical workflows.
 
 The project is guided by three core principles:
 
