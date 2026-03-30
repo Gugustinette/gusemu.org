@@ -67,9 +67,10 @@ body {
   font-family: var(--font-base);
   color: var(--text);
   background:
-    radial-gradient(circle at 10% 12%, var(--bg-glow-primary), transparent 28%),
-    radial-gradient(circle at 90% 18%, var(--bg-glow-secondary), transparent 34%),
+    radial-gradient(circle 420px at 10% 12vh, var(--bg-glow-primary), transparent),
+    radial-gradient(circle 480px at 90% 18vh, var(--bg-glow-secondary), transparent),
     linear-gradient(160deg, var(--bg) 0%, var(--bg-soft) 44%, var(--bg) 100%);
+  background-attachment: fixed;
 }
 
 a {

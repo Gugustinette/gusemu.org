@@ -133,8 +133,8 @@ const nextPage = computed(() => {
   gap: 0.15rem;
   padding: 0.85rem 1rem;
   border-radius: 12px;
-  border: 1px solid color-mix(in oklab, var(--line) 68%, #000 32%);
-  background: color-mix(in oklab, var(--surface-2) 86%, #000 14%);
+  border: 1px solid color-mix(in oklab, var(--line) 86%, var(--surface) 14%);
+  background: color-mix(in oklab, var(--surface-2) 94%, var(--surface) 6%);
   text-decoration: none;
   transition: color 0.14s ease;
   height: fit-content;
