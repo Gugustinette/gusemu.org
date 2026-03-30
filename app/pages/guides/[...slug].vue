@@ -35,7 +35,7 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { locale, t } = useI18n();
+const { locale, t, te } = useI18n();
 const fallbackLocale = "en";
 
 const normalizedPath = computed(() => normalizeContentPath(route.path) || "/");
@@ -163,12 +163,53 @@ function getNavigationKey(item: NavigationItem): string {
 }
 
 /**
+ * Returns the i18n key for a first-level guides section folder when available.
+ */
+function getGuidesSectionTranslationKey(path?: string): string | undefined {
+  const normalizedPath = normalizeContentPath(path);
+  if (!normalizedPath) {
+    return undefined;
+  }
+
+  const match = normalizedPath.match(/^\/guides\/([^/]+)$/);
+  if (!match) {
+    return undefined;
+  }
+
+  const sectionSegment = match[1];
+  if (!sectionSegment) {
+    return undefined;
+  }
+
+  const sectionSlug = sectionSegment
+    .replace(/^\d+\./, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .toLowerCase();
+
+  return `guides.sections.${sectionSlug}`;
+}
+
+/**
+ * Prefer i18n labels for first-level section folders while preserving
+ * content-defined titles for all other entries.
+ */
+function getLocalizedNavigationTitle(item: NavigationItem): string | undefined {
+  const translationKey = getGuidesSectionTranslationKey(item.path);
+  if (translationKey && te(translationKey)) {
+    return t(translationKey);
+  }
+
+  return item.title;
+}
+
+/**
  * Recursively normalizes all navigation paths so they can be matched against
  * the locale-agnostic route path.
  */
 function normalizeNavigation(item: NavigationItem): NavigationItem {
   return {
     ...item,
+    title: getLocalizedNavigationTitle(item),
     path: normalizeContentPath(item.path),
     children: (item.children || []).map(normalizeNavigation),
   };

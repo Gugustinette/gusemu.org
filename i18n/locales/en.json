@@ -30,7 +30,11 @@
     "sidebarTitle": "All Pages",
     "overview": "Overview",
     "previousPage": "Previous page",
-    "nextPage": "Next page"
+    "nextPage": "Next page",
+    "sections": {
+      "fundamentals": "Fundamentals",
+      "advanced": "Advanced"
+    }
   },
   "mode": {
     "label": "Theme",

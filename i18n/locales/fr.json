@@ -30,7 +30,11 @@
     "sidebarTitle": "Toutes les pages",
     "overview": "Vue d'ensemble",
     "previousPage": "Page précédente",
-    "nextPage": "Page suivante"
+    "nextPage": "Page suivante",
+    "sections": {
+      "fundamentals": "Fondamentaux",
+      "advanced": "Avancé"
+    }
   },
   "mode": {
     "label": "Thème",
