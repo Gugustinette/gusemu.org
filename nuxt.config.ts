@@ -2,7 +2,7 @@ import { defineNuxtConfig } from "nuxt/config";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ["~/assets/style.css"],
+  css: ["~/assets/style.css", "~/assets/markdown-content.css"],
   modules: [
     "@nuxt/content",
     "@nuxt/icon",

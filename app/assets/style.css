@@ -74,7 +74,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--brand);
   text-decoration: none;
 }
 

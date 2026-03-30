@@ -17,16 +17,9 @@
     "title": "Recherche",
     "placeholder": "Rechercher des ROMs, jeux,..."
   },
-  "about": {
-    "title": "À propos",
-    "body": "gusemu.org est un ensemble d'outils et de ressources axés sur les fondamentaux de l'émulation, les ressources communautaires et les workflows techniques.",
-    "body-2": "Le projet est guidé par trois principes fondamentaux :",
-    "point-safe": "Prioriser des configurations sûres et fiables qui minimisent les risques pour les utilisateurs.",
-    "point-knowledge": "Transformer des étapes complexes en guides clairs et reproductibles qui permettent aux utilisateurs de construire et de maintenir leurs propres configurations d'émulation.",
-    "point-community": "Soutenir les mainteneurs et mettre en avant les projets communautaires."
-  },
   "guides": {
     "title": "Guides",
+    "defaultDescription": "Des guides détaillés sur les émulateurs, les ROMs et les projets communautaires.",
     "sidebarTitle": "Toutes les pages",
     "overview": "Vue d'ensemble",
     "previousPage": "Page précédente",

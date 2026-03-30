@@ -157,10 +157,6 @@ const nextPage = computed(() => {
   font-weight: 600;
 }
 
-.content-navigation-empty {
-  min-height: 88px;
-}
-
 @media (max-width: 1050px) {
   .content-navigation {
     grid-template-columns: 1fr;

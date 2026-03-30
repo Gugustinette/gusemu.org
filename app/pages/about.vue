@@ -1,19 +1,7 @@
 <template>
   <section class="about-panel stylized-panel">
-    <h1>{{ $t("about.title") }}</h1>
-    <p>{{ $t("about.body") }}</p>
-    <p>{{ $t("about.body-2") }}</p>
-    <div class="about-points">
-      <p>
-        <Icon class="about-point-icon" name="lucide:shield-check" /> {{ $t("about.point-safe") }}
-      </p>
-      <p>
-        <Icon class="about-point-icon" name="lucide:wrench" /> {{ $t("about.point-knowledge") }}
-      </p>
-      <p>
-        <Icon class="about-point-icon" name="lucide:heart-handshake" />
-        {{ $t("about.point-community") }}
-      </p>
+    <div class="markdown-content">
+      <ContentRenderer v-if="page" :value="page" />
     </div>
   </section>
 </template>
@@ -21,47 +9,23 @@
 <script setup lang="ts">
 import { useHead, useSeoMeta } from "#imports";
 import { useI18n } from "vue-i18n";
+import { computed } from "vue";
 
-const { t } = useI18n();
+const { locale } = useI18n();
+const aboutPath = computed(() => `/${locale.value}/about`);
 
-useHead({ title: t("about.title") });
+const { data: page } = await useAsyncData(
+  () => `about-page-${locale.value}`,
+  async () => {
+    return queryCollection("content").path(aboutPath.value).first();
+  },
+);
 
+useHead({ title: page.value?.title || "About" });
 useSeoMeta({
-  title: t("about.title"),
-  description: t("about.body"),
-  ogTitle: t("about.title"),
-  ogDescription: t("about.body"),
+  title: page.value?.title || "About",
+  description: page.value?.description || "",
+  ogTitle: page.value?.title || "About",
+  ogDescription: page.value?.description || "",
 });
 </script>
-
-<style scoped>
-.about-panel {
-  padding: 1.4rem;
-}
-
-.about-panel p {
-  color: var(--text-muted);
-  max-width: 70ch;
-}
-
-.about-points {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.3rem;
-}
-
-.about-points p {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.about-point-icon {
-  color: var(--brand);
-  display: inline-block;
-  flex-shrink: 0;
-  margin-right: 0.25rem;
-  width: 1.05rem;
-  height: 1.05rem;
-}
-</style>
