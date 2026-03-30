@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { useHead, useSeoMeta } from "#imports";
 import GuidesBottomNavigation from "~/components/guides/GuidesBottomNavigation.vue";
 import GuidesSidebarItem from "~/components/guides/GuidesSidebarItem.vue";
 import { normalizeContentPath, type NavigationItem } from "~/utils/guides";
@@ -57,6 +58,17 @@ const { data: page } = await useAsyncData(
     return queryCollection("content").path(fallbackContentPath.value).first();
   },
 );
+
+watchEffect(() => {
+  const title = page.value?.title || t("guides.defaultTitle") || "Guide";
+  useHead({ title });
+  useSeoMeta({
+    title,
+    description: page.value?.description || t("guides.defaultDescription") || "",
+    ogTitle: title,
+    ogDescription: page.value?.description || t("guides.defaultDescription") || "",
+  });
+});
 
 // Get the navigation tree for the sidebar
 const { data: navigation } = await useAsyncData("guides-navigation", () =>

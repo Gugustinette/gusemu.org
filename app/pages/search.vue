@@ -9,7 +9,21 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useHead, useSeoMeta } from "#imports";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+useHead({ title: t("search.title") });
+
+useSeoMeta({
+  title: t("search.title"),
+  description: t("search.placeholder"),
+  ogTitle: t("search.title"),
+  ogDescription: t("search.placeholder"),
+});
+</script>
 
 <style scoped>
 .search-panel {

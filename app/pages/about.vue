@@ -18,6 +18,22 @@
   </section>
 </template>
 
+<script setup lang="ts">
+import { useHead, useSeoMeta } from "#imports";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+useHead({ title: t("about.title") });
+
+useSeoMeta({
+  title: t("about.title"),
+  description: t("about.body"),
+  ogTitle: t("about.title"),
+  ogDescription: t("about.body"),
+});
+</script>
+
 <style scoped>
 .about-panel {
   padding: 1.4rem;

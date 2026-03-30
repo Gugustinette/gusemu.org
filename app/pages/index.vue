@@ -17,9 +17,21 @@
 </template>
 
 <script setup lang="ts">
+import { useHead, useSeoMeta } from "#imports";
+import { useI18n } from "vue-i18n";
 import Button from "~/components/Button.vue";
 
 const localePath = useLocalePath();
+const { t } = useI18n();
+
+useHead({ title: t("home.title") });
+
+useSeoMeta({
+  title: t("home.title"),
+  description: t("home.description"),
+  ogTitle: t("home.title"),
+  ogDescription: t("home.description"),
+});
 </script>
 
 <style scoped>
