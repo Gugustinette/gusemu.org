@@ -1,9 +1,6 @@
 <template>
   <header class="site-header">
-    <NuxtLink :to="localePath('/')" class="brand-mark">
-      <Icon name="lucide:gamepad-2" />
-      <strong>{{ $t("siteTitle") }}</strong>
-    </NuxtLink>
+    <Logo />
 
     <nav class="site-nav">
       <NuxtLink
@@ -27,6 +24,7 @@
 <script setup lang="ts">
 import ColorModeSelect from "./ColorModeSelect.vue";
 import LocaleSelect from "./LocaleSelect.vue";
+import Logo from "./Logo.vue";
 
 const localePath = useLocalePath();
 const { t } = useI18n();
@@ -78,12 +76,7 @@ const isLinkActive = (link: HeaderLink): boolean => {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   font-family: var(--font-headings);
-}
-
-.brand-mark .icon {
-  color: var(--brand);
 }
 
 .site-nav {
