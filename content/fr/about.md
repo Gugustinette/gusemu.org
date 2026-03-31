@@ -11,3 +11,5 @@ Le projet est guidé par trois principes fondamentaux :
 Le site a été réalisé avec [Nuxt](https://nuxt.com/) et [Nuxt Content](https://content.nuxt.com/).
 
 Le [code source](https://github.com/Gugustinette/gusemu.org) est disponible sur [Github](https://github.com/) et le site est hébergé sur [Github Pages](https://docs.github.com/en/pages).
+
+Les polices d'écritures utilisées sont Neon et Krypton de [Monaspace](https://monaspace.githubnext.com/).

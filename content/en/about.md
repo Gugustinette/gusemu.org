@@ -11,3 +11,5 @@ The project is guided by three core principles:
 The website was made using [Nuxt](https://nuxt.com/) and [Nuxt Content](https://content.nuxt.com/).
 
 The [source code](https://github.com/Gugustinette/gusemu.org) is available on [Github](https://github.com/) and the website is hosted on [Github Pages](https://docs.github.com/en/pages).
+
+The fonts used are Neon and Krypton from [Monaspace](https://monaspace.githubnext.com/).
