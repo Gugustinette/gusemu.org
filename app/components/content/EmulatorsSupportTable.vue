@@ -320,6 +320,8 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 14px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .emu-table-header-row {
@@ -328,6 +330,22 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
   justify-content: space-between;
   padding: 0.55rem 1rem 0.55rem 1rem;
   background: color-mix(in oklab, var(--surface-2) 72%, transparent);
+}
+
+@media (max-width: 700px) {
+  .emu-table-header-row {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.55rem 0.5rem 0.55rem 0.5rem;
+  }
+  .libretro-switch-wrap {
+    justify-content: flex-start;
+    margin-bottom: 0.2rem;
+  }
+  .support-legend {
+    padding: 0.55rem 0;
+  }
 }
 
 .libretro-switch-wrap {
@@ -385,6 +403,9 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
   border-collapse: collapse;
   min-width: 640px;
   background: color-mix(in oklab, var(--surface) 90%, transparent);
+  display: block;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 .emu-table th,
@@ -392,6 +413,19 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
   border-top: 1px solid var(--line);
   padding: 0.7rem 0.8rem;
   text-align: center;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .emu-table-wrap {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .emu-table {
+    min-width: 540px;
+  }
 }
 
 .emu-table thead th {

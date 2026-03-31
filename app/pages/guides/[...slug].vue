@@ -258,6 +258,20 @@ const sidebarItems = computed(() =>
   list-style: none;
 }
 
+.markdown-content {
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+  .markdown-content {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    max-width: 100vw;
+  }
+}
+
 @media (max-width: 1050px) {
   .guides-layout {
     grid-template-columns: 1fr;
@@ -265,6 +279,27 @@ const sidebarItems = computed(() =>
 
   .guides-sidebar {
     position: static;
+    max-width: 100vw;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .guides-sidebar {
+    max-width: 100vw;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .markdown-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 </style>
