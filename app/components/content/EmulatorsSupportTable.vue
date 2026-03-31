@@ -401,11 +401,7 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
 .emu-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 640px;
   background: color-mix(in oklab, var(--surface) 90%, transparent);
-  display: block;
-  overflow-x: auto;
-  box-sizing: border-box;
 }
 
 .emu-table th,
@@ -425,6 +421,10 @@ function supportLevelRank(level: EmulatorSupportLevel): number {
   }
   .emu-table {
     min-width: 540px;
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    box-sizing: border-box;
   }
 }
 
