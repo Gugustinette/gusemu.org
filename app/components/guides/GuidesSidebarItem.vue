@@ -27,6 +27,7 @@
 import {
   buildNavigationLabel,
   toLocalizedPath,
+  normalizeContentPath,
   type LocaleCode,
   type NavigationItem,
 } from "~/utils/guides";
@@ -43,7 +44,11 @@ const hasChildren = computed(() => childItems.value.length > 0);
 
 const label = computed(() => buildNavigationLabel(props.item));
 
-const isActive = computed(() => props.currentPath === props.item.path);
+const isActive = computed(() => {
+  const normalizedCurrent = normalizeContentPath(props.currentPath);
+  const normalizedItem = normalizeContentPath(props.item.path);
+  return normalizedCurrent === normalizedItem;
+});
 
 const localizedPath = computed(() => toLocalizedPath(props.item.path, props.localeCode));
 </script>
