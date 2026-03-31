@@ -1,16 +1,22 @@
 <template>
   <div class="emu-table-wrap">
-    <div class="support-legend" aria-label="Support level legend">
-      <div v-for="item in supportLegend" :key="item.level" class="support-legend-item">
-        <span
-          class="support-icon"
-          :class="`support-${item.level}`"
-          :title="supportLabel(item.level)"
-          :aria-label="supportLabel(item.level)"
-        >
-          <Icon :name="supportIcon(item.level)" />
-        </span>
-        <span>{{ supportLabel(item.level) }}</span>
+    <div class="emu-table-header-row">
+      <div class="support-legend" aria-label="Support level legend">
+        <div v-for="item in supportLegend" :key="item.level" class="support-legend-item">
+          <span
+            class="support-icon"
+            :class="`support-${item.level}`"
+            :title="supportLabel(item.level)"
+            :aria-label="supportLabel(item.level)"
+          >
+            <Icon :name="supportIcon(item.level)" />
+          </span>
+          <span>{{ supportLabel(item.level) }}</span>
+        </div>
+      </div>
+      <div class="libretro-switch-wrap">
+        <Switch v-model="showLibretroCores" :on-color="'var(--secondary)'" />
+        <span class="libretro-switch-label">{{ t("emulators.table.showLibretroCores") }}</span>
       </div>
     </div>
 
@@ -24,28 +30,77 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="group in groupedRows" :key="group.consoleKey">
-          <tr class="console-row">
+        <template
+          v-for="row in allRows"
+          :key="
+            row.type +
+            '-' +
+            (row.type === 'console'
+              ? row.consoleKey
+              : row.type === 'retroarch'
+                ? row.consoleKey + '-retroarch'
+                : row.type === 'libretro-core'
+                  ? row.consoleKey + '-' + row.core.name
+                  : row.consoleKey + '-' + row.emulator.name)
+          "
+        >
+          <tr v-if="row.type === 'console'" class="console-row">
             <th scope="row" class="console-name-cell">
-              {{ group.consoleLabel }}
+              {{ row.consoleLabel }}
             </th>
-            <td v-for="platform in platforms" :key="`${group.consoleKey}-${platform.key}`" />
+            <td v-for="platform in platforms" :key="`${row.consoleKey}-${platform.key}`" />
           </tr>
-
-          <tr v-for="emulator in group.emulators" :key="`${group.consoleKey}-${emulator.name}`">
+          <tr v-else-if="row.type === 'retroarch'" class="retroarch-row">
             <th scope="row" class="emulator-name-cell">
               <span class="emulator-name-wrap">
                 <a
                   class="emulator-website-link"
-                  :href="emulator.website"
+                  href="https://www.retroarch.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {{ emulator.name }}
+                  RetroArch
                 </a>
                 <a
                   class="emulator-repository-link"
-                  :href="emulator.repository"
+                  href="https://github.com/libretro/RetroArch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open repository"
+                  aria-label="Open repository"
+                >
+                  <Icon name="mdi:git" />
+                </a>
+              </span>
+            </th>
+            <td v-for="platform in platforms" :key="`retroarch-${row.consoleKey}-${platform.key}`">
+              <span
+                class="support-icon"
+                :class="`support-${row.platforms[platform.key]}`"
+                :title="row.labels[platform.key]"
+                :aria-label="row.labels[platform.key]"
+              >
+                <Icon :name="supportIcon(row.platforms[platform.key] ?? defaultLibretroLevel)" />
+              </span>
+            </td>
+          </tr>
+          <tr v-else-if="row.type === 'libretro-core'" class="libretro-core-row">
+            <th scope="row" class="emulator-name-cell libretro-core-cell">
+              <span class="emulator-name-wrap">
+                <a
+                  v-if="row.core.documentation"
+                  class="libretro-core-link"
+                  :href="row.core.documentation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ row.core.name }}
+                </a>
+                <span v-else class="libretro-core-no-link">{{ row.core.name }}</span>
+                <a
+                  v-if="row.core.repository"
+                  class="emulator-repository-link"
+                  :href="row.core.repository"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Open repository"
@@ -57,15 +112,61 @@
             </th>
             <td
               v-for="platform in platforms"
-              :key="`${group.consoleKey}-${emulator.name}-${platform.key}`"
+              :key="`${row.consoleKey}-core-${row.core.name}-${platform.key}`"
             >
               <span
                 class="support-icon"
-                :class="`support-${emulator.platforms[platform.key]}`"
-                :title="supportLabel(emulator.platforms[platform.key])"
-                :aria-label="supportLabel(emulator.platforms[platform.key])"
+                :class="`support-${row.core.platforms?.[platform.key] ?? defaultLibretroLevel}`"
+                :title="supportLabel(row.core.platforms?.[platform.key] ?? defaultLibretroLevel)"
+                :aria-label="
+                  supportLabel(row.core.platforms?.[platform.key] ?? defaultLibretroLevel)
+                "
               >
-                <Icon :name="supportIcon(emulator.platforms[platform.key])" />
+                <Icon
+                  :name="supportIcon(row.core.platforms?.[platform.key] ?? defaultLibretroLevel)"
+                />
+              </span>
+            </td>
+          </tr>
+          <tr v-else-if="row.type === 'emulator'">
+            <th scope="row" class="emulator-name-cell">
+              <span class="emulator-name-wrap">
+                <a
+                  class="emulator-website-link"
+                  :href="row.emulator.website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ row.emulator.name }}
+                </a>
+                <a
+                  v-if="row.emulator.repository"
+                  class="emulator-repository-link"
+                  :href="row.emulator.repository"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open repository"
+                  aria-label="Open repository"
+                >
+                  <Icon name="mdi:git" />
+                </a>
+              </span>
+            </th>
+            <td
+              v-for="platform in platforms"
+              :key="`${row.consoleKey}-${row.emulator.name}-${platform.key}`"
+            >
+              <span
+                class="support-icon"
+                :class="`support-${row.emulator.platforms[platform.key] ?? defaultLibretroLevel}`"
+                :title="supportLabel(row.emulator.platforms[platform.key] ?? defaultLibretroLevel)"
+                :aria-label="
+                  supportLabel(row.emulator.platforms[platform.key] ?? defaultLibretroLevel)
+                "
+              >
+                <Icon
+                  :name="supportIcon(row.emulator.platforms[platform.key] ?? defaultLibretroLevel)"
+                />
               </span>
             </td>
           </tr>
@@ -81,9 +182,14 @@ import {
   emulatorConsoleLabels,
   emulatorConsoleOrder,
   emulators,
+  type EmulatorConsoleKey,
 } from "~/data/emulators";
+import { libretroCores } from "~/data/libretro-cores";
+import Switch from "~/components/Switch.vue";
 
 const { t } = useI18n();
+const showLibretroCores = ref(false);
+const defaultLibretroLevel = EmulatorSupportLevel.Stable;
 
 const platforms: Array<{
   key: "windows" | "macos" | "linux" | "android" | "ios";
@@ -105,27 +211,64 @@ const supportLegend: Array<{
   { level: EmulatorSupportLevel.Unsupported },
 ];
 
-const groupedRows = computed(() =>
-  emulatorConsoleOrder.map((consoleKey) => ({
-    consoleKey,
-    consoleLabel: emulatorConsoleLabels[consoleKey],
-    emulators: emulators.filter((emulator) => emulator.emulating[consoleKey]),
-  })),
-);
+type TableRow =
+  | { type: "console"; consoleKey: EmulatorConsoleKey; consoleLabel: string }
+  | {
+      type: "retroarch";
+      consoleKey: EmulatorConsoleKey;
+      platforms: Record<string, EmulatorSupportLevel>;
+      labels: Record<string, string>;
+    }
+  | { type: "libretro-core"; consoleKey: EmulatorConsoleKey; core: (typeof libretroCores)[number] }
+  | { type: "emulator"; consoleKey: EmulatorConsoleKey; emulator: (typeof emulators)[number] };
 
-function supportIcon(level: EmulatorSupportLevel): string {
-  switch (level) {
-    case EmulatorSupportLevel.Recommended:
-      return "heroicons:star-20-solid";
-    case EmulatorSupportLevel.Stable:
-      return "heroicons:check-circle-20-solid";
-    case EmulatorSupportLevel.Unstable:
-      return "heroicons:exclamation-triangle-20-solid";
-    case EmulatorSupportLevel.Unsupported:
-    default:
-      return "heroicons:x-circle-20-solid";
+const allRows = computed<TableRow[]>(() => {
+  const rows: TableRow[] = [];
+  for (const consoleKey of emulatorConsoleOrder) {
+    rows.push({ type: "console", consoleKey, consoleLabel: emulatorConsoleLabels[consoleKey] });
+
+    // RetroArch row (aggregated from libretro cores)
+    const cores = libretroCores.filter((core) => core.emulating?.[consoleKey]);
+    if (cores.length) {
+      // Aggregate best support per platform
+      const platforms: Record<string, EmulatorSupportLevel> = {};
+      const labels: Record<string, string> = {};
+      for (const platform of ["windows", "macos", "linux", "android", "ios"]) {
+        let bestLevel: EmulatorSupportLevel | null = null;
+        let bestCore: (typeof libretroCores)[number] | null = null;
+        for (const core of cores) {
+          const level =
+            core.platforms?.[platform as keyof typeof core.platforms] ?? defaultLibretroLevel;
+          if (bestLevel === null || supportLevelRank(level) < supportLevelRank(bestLevel)) {
+            bestLevel = level;
+            bestCore = core;
+          }
+        }
+        platforms[platform] = bestLevel ?? defaultLibretroLevel;
+        labels[platform] =
+          bestLevel === EmulatorSupportLevel.Recommended && bestCore
+            ? `${supportLabel(bestLevel)} (${bestCore.name})`
+            : supportLabel(bestLevel ?? defaultLibretroLevel);
+      }
+      rows.push({ type: "retroarch", consoleKey, platforms, labels });
+    }
+
+    // Libretro cores (toggleable)
+    if (showLibretroCores.value && cores.length) {
+      for (const core of cores) {
+        rows.push({ type: "libretro-core", consoleKey, core });
+      }
+    }
+
+    // Standalone emulators
+    for (const emulator of emulators) {
+      if (emulator.emulating[consoleKey] && emulator.name !== "RetroArch") {
+        rows.push({ type: "emulator", consoleKey, emulator });
+      }
+    }
   }
-}
+  return rows;
+});
 
 function supportLabel(level: EmulatorSupportLevel): string {
   switch (level) {
@@ -140,6 +283,34 @@ function supportLabel(level: EmulatorSupportLevel): string {
       return t("emulators.support.unsupported");
   }
 }
+
+function supportIcon(level: EmulatorSupportLevel): string {
+  switch (level) {
+    case EmulatorSupportLevel.Recommended:
+      return "mdi:check-circle";
+    case EmulatorSupportLevel.Stable:
+      return "mdi:check-circle-outline";
+    case EmulatorSupportLevel.Unstable:
+      return "mdi:alert-circle-outline";
+    case EmulatorSupportLevel.Unsupported:
+    default:
+      return "mdi:close-circle-outline";
+  }
+}
+
+function supportLevelRank(level: EmulatorSupportLevel): number {
+  switch (level) {
+    case EmulatorSupportLevel.Recommended:
+      return 0;
+    case EmulatorSupportLevel.Stable:
+      return 1;
+    case EmulatorSupportLevel.Unstable:
+      return 2;
+    case EmulatorSupportLevel.Unsupported:
+    default:
+      return 3;
+  }
+}
 </script>
 
 <style scoped>
@@ -151,6 +322,42 @@ function supportLabel(level: EmulatorSupportLevel): string {
   border-radius: 14px;
 }
 
+.emu-table-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 1rem 0.55rem 1rem;
+  background: color-mix(in oklab, var(--surface-2) 72%, transparent);
+}
+
+.libretro-switch-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.libretro-switch-label {
+  font-size: 0.95em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.libretro-core-cell {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.libretro-core-link {
+  color: var(--secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.14rem;
+}
+
+.libretro-core-no-link {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
 .support-legend {
   display: flex;
   flex-wrap: wrap;
@@ -158,7 +365,6 @@ function supportLabel(level: EmulatorSupportLevel): string {
   margin: 0;
   padding: 0.55rem 1rem;
   list-style: none;
-  border-bottom: 1px solid var(--line);
   background: color-mix(in oklab, var(--surface-2) 72%, transparent);
   align-items: center;
 }

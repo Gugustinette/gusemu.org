@@ -277,9 +277,9 @@ export const emulators: Emulator[] = [
     website: "https://github.com/snes9xgit/snes9x",
     repository: "https://github.com/snes9xgit/snes9x",
     platforms: {
-      windows: EmulatorSupportLevel.Recommended,
-      macos: EmulatorSupportLevel.Recommended,
-      linux: EmulatorSupportLevel.Recommended,
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
       android: EmulatorSupportLevel.Unsupported,
       ios: EmulatorSupportLevel.Unsupported,
     },
@@ -461,7 +461,7 @@ export const emulators: Emulator[] = [
       windows: EmulatorSupportLevel.Recommended,
       macos: EmulatorSupportLevel.Recommended,
       linux: EmulatorSupportLevel.Recommended,
-      android: EmulatorSupportLevel.Recommended,
+      android: EmulatorSupportLevel.Stable,
       ios: EmulatorSupportLevel.Recommended,
     },
     emulating: {
@@ -478,7 +478,7 @@ export const emulators: Emulator[] = [
       windows: EmulatorSupportLevel.Stable,
       macos: EmulatorSupportLevel.Unsupported,
       linux: EmulatorSupportLevel.Stable,
-      android: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Recommended,
       ios: EmulatorSupportLevel.Unsupported,
     },
     emulating: {

@@ -32,7 +32,8 @@
   },
   "emulators": {
     "table": {
-      "emulator": "Emulator"
+      "emulator": "Emulator",
+      "showLibretroCores": "Show Libretro cores"
     },
     "support": {
       "recommended": "Recommended",

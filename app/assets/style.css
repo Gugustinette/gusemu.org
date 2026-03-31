@@ -11,9 +11,9 @@
   --text: #171f37;
   --text-muted: #485379;
   --brand: #00a786;
-  --secondary: #db78ff;
   --brand-strong: #00866b;
   --brand-contrast: #f2fffb;
+  --secondary: #6c5cff;
   --bg-glow-primary: color-mix(in oklab, var(--brand) 22%, transparent);
   --bg-glow-secondary: color-mix(in oklab, var(--secondary) 18%, transparent);
   --line: #d3dcf7;
@@ -31,9 +31,9 @@
   --text: #edf1ff;
   --text-muted: #b4bfde;
   --brand: #44ffd1;
-  --secondary: #db78ff;
   --brand-strong: #2de7c5;
   --brand-contrast: #031116;
+  --secondary: #b7aaff;
   --line: #2f3d69;
   --code-bg: #0a1024;
   --code-inline-bg: #141d3d;
