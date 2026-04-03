@@ -48,10 +48,23 @@ async function getAllLinks(dir: string): Promise<string[]> {
 async function checkLink(link: string): Promise<boolean> {
   try {
     const response = await fetch(link, { method: "HEAD" });
-    return response.status >= 200 && response.status < 500 && response.status !== 404; // 404 is the only invalid as it could mean the content was removed
+    return (
+      // Response code should be between 200 and 500
+      response.status >= 200 &&
+      response.status < 500 &&
+      // 404 is the only invalid as it could mean the content was removed
+      response.status !== 404
+    );
   } catch (error) {
     console.error(`Error checking link: ${link}`, error);
-    return false;
+    // On error, try a standard GET request, as some servers/routes may not support HEAD requests
+    try {
+      const response = await fetch(link);
+      return response.status >= 200 && response.status < 500 && response.status !== 404;
+    } catch (error) {
+      console.error(`Error checking link with GET: ${link}`, error);
+      return false;
+    }
   }
 }
 
