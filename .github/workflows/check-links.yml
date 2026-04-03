@@ -27,5 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Required to prevent rolldown to fail due to Nuxt's missing tsconfig.json
+      - name: Remove tsconfig.json
+        run: rm -f tsconfig.json
+
       - name: Run check-links script
         run: pnpm run check-links
