@@ -540,6 +540,23 @@ export const emulators: Emulator[] = [
     libretroSupport: false,
     retroAchievementsSupport: false,
   },
+  {
+    name: "Ryujinx",
+    website: "https://ryujinx.app/",
+    repository: "https://git.greemdev.net/projects/Ryubing",
+    platforms: {
+      windows: EmulatorSupportLevel.Stable,
+      macos: EmulatorSupportLevel.Stable,
+      linux: EmulatorSupportLevel.Stable,
+      android: EmulatorSupportLevel.Unsupported,
+      ios: EmulatorSupportLevel.Unsupported,
+    },
+    emulating: {
+      switch: true,
+    },
+    libretroSupport: false,
+    retroAchievementsSupport: false,
+  },
   /**
    * Sega
    */
