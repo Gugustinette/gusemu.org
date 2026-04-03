@@ -9,7 +9,8 @@
     "build": "nuxt generate",
     "typecheck": "tsc --noEmit",
     "check": "vp check",
-    "check:fix": "vp check --fix"
+    "check:fix": "vp check --fix",
+    "check-links": "unrun scripts/check-links.ts"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.99",
@@ -21,8 +22,10 @@
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/device": "^4.0.0",
     "@nuxtjs/i18n": "^10.2.4",
+    "@types/node": "^25.5.2",
     "better-sqlite3": "^12.8.0",
     "nuxt": "^4.4.2",
+    "unrun": "^0.2.34",
     "vite-plus": "latest"
   },
   "packageManager": "pnpm@10.32.1",

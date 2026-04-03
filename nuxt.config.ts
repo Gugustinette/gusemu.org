@@ -92,4 +92,12 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   compatibilityDate: "2026-03-27",
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        // Include @types/node for type definitions of Node.js modules
+        types: ["node"],
+      },
+    },
+  },
 });
