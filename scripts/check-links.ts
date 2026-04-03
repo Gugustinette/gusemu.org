@@ -22,19 +22,28 @@ async function getAllLinks(dir: string): Promise<string[]> {
     else if (entry.isFile() && (entry.name.endsWith(".md") || entry.name.endsWith(".ts"))) {
       // Read the file
       const content = await fs.readFile(fullPath, "utf-8");
+      const lines = content.split(/\r?\n/);
       // Regular expression to match any html link
       const regex = /http[s]?:\/\/[^\s"']+/g;
-      let match;
-      // Extract all links from the file content
-      while ((match = regex.exec(content)) !== null) {
-        // Add the links to the list
-        links.push(
-          match[0]
-            // Remove any trailing characters that are not part of the URL, such as parentheses or quotes
-            .split(")")[0]
-            .split('"')[0]
-            .split("'")[0],
-        );
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+        let match;
+        while ((match = regex.exec(line)) !== null) {
+          // Check if the previous line contains @ignore-check-link
+          const prevLine = i > 0 ? lines[i - 1] : "";
+          if (prevLine.includes("@ignore-check-links")) {
+            console.info(`Ignoring link: ${match[0]}`);
+            continue;
+          }
+          // Add the link to the list
+          links.push(
+            match[0]
+              // Remove any trailing characters that are not part of the URL, such as parentheses or quotes
+              .split(")")[0]
+              .split('"')[0]
+              .split("'")[0],
+          );
+        }
       }
     }
   }
@@ -47,11 +56,7 @@ async function getAllLinks(dir: string): Promise<string[]> {
  */
 async function checkLink(link: string): Promise<boolean> {
   try {
-    const response = await fetch(link, {
-      method: "HEAD",
-      // Set a timeout of 20 seconds for the request
-      signal: AbortSignal.timeout(20000),
-    });
+    const response = await fetch(link, { method: "HEAD" });
     const isValid =
       // Response code should be between 200 and 500
       response.status >= 200 &&
