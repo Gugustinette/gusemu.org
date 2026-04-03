@@ -47,7 +47,11 @@ async function getAllLinks(dir: string): Promise<string[]> {
  */
 async function checkLink(link: string): Promise<boolean> {
   try {
-    const response = await fetch(link, { method: "HEAD" });
+    const response = await fetch(link, {
+      method: "HEAD",
+      // Set a timeout of 20 seconds for the request
+      signal: AbortSignal.timeout(20000),
+    });
     const isValid =
       // Response code should be between 200 and 500
       response.status >= 200 &&
