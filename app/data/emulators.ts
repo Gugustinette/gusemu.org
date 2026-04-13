@@ -541,7 +541,7 @@ export const emulators: Emulator[] = [
     retroAchievementsSupport: false,
   },
   {
-    name: "Ryujinb",
+    name: "Ryubing",
     website: "https://ryujinx.app/",
     repository: "https://git.ryujinx.app/projects/Ryubing",
     platforms: {
